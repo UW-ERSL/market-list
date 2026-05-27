@@ -1203,14 +1203,21 @@ main {
         if (!Array.isArray(data.master) || !Array.isArray(data.week)) {
           throw new Error('invalid');
         }
-        masterList = data.master;
-        weekList = data.week;
+        // Remap any category not in current list to 'Other'
+        masterList = data.master.map(item => ({
+          ...item,
+          category: CATEGORIES.includes(item.category) ? item.category : 'Other'
+        }));
+        weekList = data.week.map(item => ({
+          ...item,
+          category: CATEGORIES.includes(item.category) ? item.category : 'Other'
+        }));
         saveMaster();
         saveWeek();
         updateBadge();
-        switchView(currentView);
         closeMenu();
-        showToast("Data restored");
+        switchView('pantry');
+        showToast("Data restored — " + masterList.length + " items");
       } catch (err) {
         showToast("Couldn't read file");
       }
