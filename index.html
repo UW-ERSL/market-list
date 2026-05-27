@@ -741,7 +741,7 @@ main {
     <h1 class="title">Market <span class="accent">list</span></h1>
     <p class="subtitle" id="subtitle">Loading…</p>
   </div>
-  <span class="version">v1.3</span>
+  <span class="version">v1.4</span>
   <button class="icon-btn" id="menuBtn" aria-label="Menu">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
@@ -806,13 +806,13 @@ main {
     <span class="label">Export data</span>
     <span class="hint">save backup</span>
   </button>
-  <label class="menu-item" id="importBtn" for="importFile">
+  <button class="menu-item" id="importBtn">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
     </svg>
     <span class="label">Import data</span>
     <span class="hint">restore backup</span>
-  </label>
+  </button>
 </div>
 
 <input type="file" id="importFile" accept=".json,application/json" style="position:fixed;left:-9999px;opacity:0;">
@@ -1264,7 +1264,7 @@ main {
     if (e.target.closest('#menuBtn')) { openMenu(); return; }
     if (e.target.id === 'menuBackdrop') { closeMenu(); return; }
     if (e.target.closest('#exportBtn')) { exportData(); return; }
-    // importBtn is now a label — file picker opens natively via for/id binding
+    if (e.target.closest('#importBtn')) { closeMenu(); document.getElementById('importFile').click(); return; }
 
     if (!isActionable && (clearWeekArmed || deleteArmedId)) {
       disarmAll();
