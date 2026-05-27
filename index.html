@@ -741,7 +741,7 @@ main {
     <h1 class="title">Market <span class="accent">list</span></h1>
     <p class="subtitle" id="subtitle">Loading…</p>
   </div>
-  <span class="version">v1.4</span>
+  <span class="version">v1.5</span>
   <button class="icon-btn" id="menuBtn" aria-label="Menu">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
@@ -1286,8 +1286,209 @@ main {
     e.target.value = '';
   });
 
+  const SEED_MASTER = [
+  {
+    "id": "mplffk17myryz",
+    "name": "Tomatoes",
+    "category": "Produce"
+  },
+  {
+    "id": "mplffz1cpi3l1",
+    "name": "Potatoes",
+    "category": "Produce"
+  },
+  {
+    "id": "mplfg7erwirdo",
+    "name": "Red onions",
+    "category": "Produce"
+  },
+  {
+    "id": "mplfgdt1bdh32",
+    "name": "Cauliflower",
+    "category": "Produce"
+  },
+  {
+    "id": "mplfhuip31ut7",
+    "name": "Cucumbers",
+    "category": "Produce"
+  },
+  {
+    "id": "mplfidyqx617s",
+    "name": "Fresh beans",
+    "category": "Produce"
+  },
+  {
+    "id": "mplfj05bvhr19",
+    "name": "Avocados",
+    "category": "Produce"
+  },
+  {
+    "id": "mplfjc6l1ckq6",
+    "name": "Fruits",
+    "category": "Produce"
+  },
+  {
+    "id": "mplfkzjj038th",
+    "name": "Ginger",
+    "category": "Produce"
+  },
+  {
+    "id": "mplflc5412afz",
+    "name": "Green capsicum",
+    "category": "Produce"
+  },
+  {
+    "id": "mplfli8satvv5",
+    "name": "Red capsicum",
+    "category": "Produce"
+  },
+  {
+    "id": "mplfvwx33w8ms",
+    "name": "Milk",
+    "category": "Dairy"
+  },
+  {
+    "id": "mplfwcz61wx0i",
+    "name": "Butter",
+    "category": "Dairy"
+  },
+  {
+    "id": "mplfwotgu1xx0",
+    "name": "Half and half",
+    "category": "Dairy"
+  },
+  {
+    "id": "mplfx122lylas",
+    "name": "Bread",
+    "category": "Bakery"
+  },
+  {
+    "id": "mplfxasl6bvoq",
+    "name": "Spinach",
+    "category": "Frozen"
+  },
+  {
+    "id": "mplfxtos6h6cl",
+    "name": "Paper Towels",
+    "category": "Household"
+  },
+  {
+    "id": "mplfxzah8d9ht",
+    "name": "Toilet Paper",
+    "category": "Household"
+  },
+  {
+    "id": "mplfy6fzryhji",
+    "name": "Pasta",
+    "category": "Pantry"
+  },
+  {
+    "id": "mplfyce1scein",
+    "name": "Pasta Sauce",
+    "category": "Pantry"
+  },
+  {
+    "id": "mplfyj3ekgv06",
+    "name": "Avocado Oil",
+    "category": "Pantry"
+  },
+  {
+    "id": "mplfz3k097n3v",
+    "name": "Coriander",
+    "category": "Produce"
+  },
+  {
+    "id": "mplfz99p6gerg",
+    "name": "Mint",
+    "category": "Indian"
+  },
+  {
+    "id": "mplfzen2f62hn",
+    "name": "Paneer",
+    "category": "Indian"
+  },
+  {
+    "id": "mplfzj2xekzz2",
+    "name": "Dahi",
+    "category": "Indian"
+  },
+  {
+    "id": "mplfznqsoowlt",
+    "name": "Vegetables",
+    "category": "Indian"
+  },
+  {
+    "id": "mplfzwysi2gn4",
+    "name": "Nutella",
+    "category": "Pantry"
+  },
+  {
+    "id": "mplg01a4exgar",
+    "name": "Tamarind",
+    "category": "Indian"
+  },
+  {
+    "id": "mplg07hgiyngy",
+    "name": "Tamarind Paste",
+    "category": "Indian"
+  },
+  {
+    "id": "mplg0b5peagt8",
+    "name": "Peanuts",
+    "category": "Indian"
+  },
+  {
+    "id": "mplg0ordf9a2e",
+    "name": "Samosas",
+    "category": "Indian"
+  },
+  {
+    "id": "mplg0vgc5975j",
+    "name": "Moong",
+    "category": "Indian"
+  },
+  {
+    "id": "mplg0z77e50sf",
+    "name": "Toor Dal",
+    "category": "Indian"
+  },
+  {
+    "id": "mplg18pec8bsk",
+    "name": "Urad Dal",
+    "category": "Indian"
+  },
+  {
+    "id": "mplg564g1k73z",
+    "name": "Detergent",
+    "category": "Household"
+  },
+  {
+    "id": "mplg5f4z2ujr9",
+    "name": "Dryer Sheets",
+    "category": "Household"
+  },
+  {
+    "id": "mplgdmu5sb4pk",
+    "name": "Red chillies",
+    "category": "Indian"
+  },
+  {
+    "id": "mplgdtuokbse4",
+    "name": "Green chillies",
+    "category": "Indian"
+  }
+];
+
   (function init() {
     loadData();
+    // If pantry is empty and we have seed data, load it automatically
+    if (masterList.length === 0 && SEED_MASTER.length > 0) {
+      masterList = SEED_MASTER.map(item => ({
+        ...item,
+        category: CATEGORIES.includes(item.category) ? item.category : 'Other'
+      }));
+      saveMaster();
+    }
     updateBadge();
     document.getElementById('subtitle').textContent = 'Your master list';
     renderPantry();
