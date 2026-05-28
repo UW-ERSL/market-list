@@ -738,10 +738,9 @@ main {
 
 <header>
   <div class="title-block">
-    <h1 class="title">Market <span class="accent">list</span></h1>
-    <p class="subtitle" id="subtitle">Loading…</p>
+    <h1 class="title">Market list</h1>
   </div>
-  <span class="version">v1.5</span>
+  <span class="version">v1.7</span>
   <button class="icon-btn" id="menuBtn" aria-label="Menu">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
@@ -1167,12 +1166,7 @@ main {
     document.querySelectorAll('.tab').forEach(t => {
       t.classList.toggle('active', t.dataset.view === view);
     });
-    const subtitles = {
-      pantry: 'Your master list',
-      week: "What you need this week",
-      shop: 'Tap items to check off'
-    };
-    document.getElementById('subtitle').textContent = subtitles[view];
+
     if (view === 'pantry') renderPantry();
     if (view === 'week') renderWeek();
     if (view === 'shop') renderShop();
@@ -1490,7 +1484,7 @@ main {
       saveMaster();
     }
     updateBadge();
-    document.getElementById('subtitle').textContent = 'Your master list';
+
     renderPantry();
   })();
 </script>
